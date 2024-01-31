@@ -16,3 +16,4 @@ jobs:
           dbt_cloud_token: ${{ secrets.DBT_CLOUD_API_TOKEN }}
           dbt_cloud_account_id: ${{ vars.DBT_CLOUD_ACCOUNT_ID }}
           dbt_cloud_job_id: ${{ vars.DBT_CLOUD_JOB_ID__DEPLOY_PROD }}
+          failure_on_error: true
