@@ -1,19 +1,19 @@
-name: try running dbt-cloud-action
-
+name: Run dbt cloud
 on:
   workflow_dispatch:
 
-concurrency: PROD
-
 jobs:
-  dbt:
+  deploy:
     runs-on: ubuntu-latest
+    environment: default
+
     steps:
       - uses: kingalban/dbt-cloud-action@node16-to-node20
         id: dbt_cloud_run
         with:
-          dbt_cloud_url: https://cloud.getdbt.com/
           dbt_cloud_token: ${{ secrets.DBT_CLOUD_API_TOKEN }}
-          dbt_cloud_account_id: ${{ vars.DBT_CLOUD_ACCOUNT_ID }}
-          dbt_cloud_job_id: ${{ vars.DBT_CLOUD_JOB_ID__DEPLOY_PROD }}
+          dbt_cloud_account_id: ${{ secrets.DBT_CLOUD_ACCOUNT_ID }}
+          dbt_cloud_job_id: ${{ secrets.DBT_CLOUD_JOB_ID__DEPLOY_PROD }}
           failure_on_error: true
+          steps_override: |
+            - echo hello world
